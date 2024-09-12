@@ -16,7 +16,7 @@ use ChrisLoftus\Reqres\DataTransferObjects\{User, UserCreated, UsersPaginated};
 
 final class ReqresAdapterTest extends TestCase
 {
-    private function createHttpClient($mock): Client
+    private function createHttpClient(MockHandler $mock): Client
     {
         $handlerStack = HandlerStack::create($mock);
 
@@ -166,5 +166,7 @@ final class ReqresAdapterTest extends TestCase
         $this->assertEquals(2, $response->page);
         $this->assertInstanceOf(User::class, $response->data[0]);
         $this->assertEquals('michael.lawson@reqres.in', $response->data[0]->email);
+        $this->assertEquals(1, $response->prevPage);
+        $this->assertNull($response->nextPage);
     }
 }
