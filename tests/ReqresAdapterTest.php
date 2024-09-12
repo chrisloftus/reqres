@@ -10,7 +10,7 @@ use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Handler\MockHandler;
 use PHPUnit\Framework\Attributes\Test;
-use ChrisLoftus\Reqres\ReqresAdapter;
+use ChrisLoftus\Reqres\Adapters\ReqresAdapter;
 use ChrisLoftus\Reqres\DataTransferObjects\User;
 use ChrisLoftus\Reqres\DataTransferObjects\UserCreated;
 use ChrisLoftus\Reqres\DataTransferObjects\UsersPaginated;
@@ -64,8 +64,6 @@ final class ReqresAdapterTest extends TestCase
 
         $adapter = new ReqresAdapter($client);
         $response = $adapter->createUser('morpheus', 'leader');
-
-        var_dump($response);
 
         $this->assertInstanceOf(UserCreated::class, $response);
         $this->assertEquals(972, $response->id);
@@ -136,8 +134,6 @@ final class ReqresAdapterTest extends TestCase
 
         $adapter = new ReqresAdapter($client);
         $response = $adapter->getUsersPaginated(2);
-
-        var_dump($response);
 
         $this->assertInstanceOf(UsersPaginated::class, $response);
         $this->assertEquals(2, $response->page);
