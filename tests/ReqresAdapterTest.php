@@ -47,11 +47,11 @@ final class ReqresAdapterTest extends TestCase
 
         $client = $this->createHttpClient($mock);
         $adapter = new ReqresAdapter($client);
-        $response = $adapter->getUser(2);
+        $user = $adapter->getUser(2);
 
-        $this->assertInstanceOf(User::class, $response);
-        $this->assertEquals(2, $response->id);
-        $this->assertEquals('janet.weaver@reqres.in!', $response->email);
+        $this->assertInstanceOf(User::class, $user);
+        $this->assertEquals(2, $user->id);
+        $this->assertEquals('janet.weaver@reqres.in!', $user->email);
     }
 
     #[Test]
@@ -68,10 +68,10 @@ final class ReqresAdapterTest extends TestCase
 
         $client = $this->createHttpClient($mock);
         $adapter = new ReqresAdapter($client);
-        $response = $adapter->createUser('morpheus', 'leader');
+        $user = $adapter->createUser('morpheus', 'leader');
 
-        $this->assertInstanceOf(UserCreated::class, $response);
-        $this->assertEquals(972, $response->id);
+        $this->assertInstanceOf(UserCreated::class, $user);
+        $this->assertEquals(972, $user->id);
     }
 
     #[Test]
