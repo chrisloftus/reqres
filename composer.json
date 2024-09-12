@@ -1,0 +1,31 @@
+{
+    "name": "chrisloftus/plentific",
+    "description": "A PHP library for the Reqres.in API",
+    "version": "1.0.0",
+    "type": "library",
+    "require": {
+        "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.9",
+        "monolog/monolog": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "ChrisLoftus\\Plentific\\": "src/ChrisLoftus/Plentific"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Chris Loftus",
+            "email": "68920+chrisloftus@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^11.3"
+    }
+}
