@@ -1,5 +1,5 @@
 {
-    "name": "chrisloftus/plentific",
+    "name": "chrisloftus/reqres",
     "description": "A PHP library for the Reqres.in API",
     "version": "1.0.0",
     "type": "library",
