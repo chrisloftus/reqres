@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ChrisLoftus\Reqres\Tests;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
@@ -67,6 +68,32 @@ final class ReqresAdapterTest extends TestCase
 
         $this->assertInstanceOf(UserCreated::class, $response);
         $this->assertEquals(972, $response->id);
+    }
+
+    #[Test]
+    public function cannot_create_a_user_without_a_name(): void
+    {
+        $mock = new MockHandler([]);
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
+        $adapter = new ReqresAdapter($client);
+
+        $this->expectException(Exception::class);
+
+        $adapter->createUser(name: '', job: 'leader');
+    }
+
+    #[Test]
+    public function cannot_create_a_user_without_a_job(): void
+    {
+        $mock = new MockHandler([]);
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
+        $adapter = new ReqresAdapter($client);
+
+        $this->expectException(Exception::class);
+
+        $adapter->createUser(name: 'morpheus', job: '');
     }
 
     #[Test]
