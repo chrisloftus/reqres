@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace ChrisLoftus\Reqres\Adapters;
 
-use ChrisLoftus\Reqres\DataTransferObjects\User;
-use ChrisLoftus\Reqres\DataTransferObjects\UserCreated;
-use ChrisLoftus\Reqres\DataTransferObjects\UsersPaginated;
+use ChrisLoftus\Reqres\DataTransferObjects\{User, UserCreated, UsersPaginated};
 
 interface ReqresAdapterInterface
 {

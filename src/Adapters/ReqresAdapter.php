@@ -6,9 +6,8 @@ namespace ChrisLoftus\Reqres\Adapters;
 
 use Exception;
 use GuzzleHttp\Client;
-use ChrisLoftus\Reqres\DataTransferObjects\User;
-use ChrisLoftus\Reqres\DataTransferObjects\UserCreated;
-use ChrisLoftus\Reqres\DataTransferObjects\UsersPaginated;
+use ChrisLoftus\Reqres\DataTransferObjects\{User, UserCreated, UsersPaginated};
+use ChrisLoftus\Reqres\Exceptions\{CouldNotGetUser, CreateUserValidationFailed, CouldNotGetUsersPaginated};
 
 class ReqresAdapter implements ReqresAdapterInterface
 {
@@ -26,17 +25,21 @@ class ReqresAdapter implements ReqresAdapterInterface
 
     public function getUser(int $id): User
     {
-        $response = $this->client->get("users/{$id}");
-
-        $json = json_decode($response->getBody()->getContents(), true);
-
-        return User::fromArray($json['data']);
+        try {
+            $response = $this->client->get("users/{$id}");
+    
+            $json = json_decode($response->getBody()->getContents(), true);
+    
+            return User::fromArray($json['data']);
+        } catch (Exception $e) {
+            throw new CouldNotGetUser("Failed to get user from Reqres", 1, $e);
+        }
     }
     
     public function createUser(string $name, string $job): UserCreated
     {
         if (empty(trim($name)) || empty(trim($job))) {
-            throw new Exception("User's name and job must be provided when creating a user");
+            throw new CreateUserValidationFailed("User's name and job must be provided when creating a user on Reqres");
         }
 
         $response = $this->client->post('users', [
@@ -53,9 +56,13 @@ class ReqresAdapter implements ReqresAdapterInterface
 
     public function getUsersPaginated(int $page): UsersPaginated
     {
-        $response = $this->client->get("users?page={$page}");
-
-        $json = json_decode($response->getBody()->getContents(), true);
+        try {
+            $response = $this->client->get("users?page={$page}");
+    
+            $json = json_decode($response->getBody()->getContents(), true);
+        } catch (Exception $e) {
+            throw new CouldNotGetUsersPaginated("Failed to get users (paginated) from Reqres", 1, $e);
+        }
 
         return UsersPaginated::fromArray($json);
     }

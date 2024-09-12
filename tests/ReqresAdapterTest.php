@@ -12,9 +12,7 @@ use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Handler\MockHandler;
 use PHPUnit\Framework\Attributes\Test;
 use ChrisLoftus\Reqres\Adapters\ReqresAdapter;
-use ChrisLoftus\Reqres\DataTransferObjects\User;
-use ChrisLoftus\Reqres\DataTransferObjects\UserCreated;
-use ChrisLoftus\Reqres\DataTransferObjects\UsersPaginated;
+use ChrisLoftus\Reqres\DataTransferObjects\{User, UserCreated, UsersPaginated};
 
 final class ReqresAdapterTest extends TestCase
 {
