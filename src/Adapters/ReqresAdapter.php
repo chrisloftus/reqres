@@ -6,12 +6,11 @@ namespace ChrisLoftus\Reqres\Adapters;
 
 use Exception;
 use GuzzleHttp\Client;
-use ChrisLoftus\Reqres\Logger;
 use ChrisLoftus\Reqres\DataTransferObjects\User;
 use ChrisLoftus\Reqres\DataTransferObjects\UserCreated;
 use ChrisLoftus\Reqres\DataTransferObjects\UsersPaginated;
 
-class ReqresAdapter
+class ReqresAdapter implements ReqresAdapterInterface
 {
     private const BASE_URL = 'https://reqres.in/api';
 
