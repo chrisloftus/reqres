@@ -12,7 +12,7 @@ use ChrisLoftus\Reqres\DataTransferObjects\UsersPaginated;
 
 class ReqresAdapter implements ReqresAdapterInterface
 {
-    public const BASE_URL = 'https://reqres.in/api';
+    public const BASE_URL = 'https://reqres.in/api/';
 
     private $client;
 
