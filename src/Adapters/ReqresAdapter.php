@@ -12,20 +12,25 @@ use ChrisLoftus\Reqres\DataTransferObjects\UsersPaginated;
 
 class ReqresAdapter implements ReqresAdapterInterface
 {
-    private const BASE_URL = 'https://reqres.in/api';
+    public const BASE_URL = 'https://reqres.in/api';
+
+    private $client;
 
     public function __construct(
-        private Client $client
+        Client $client = null
     ) {
+        $this->client = $client ?: new Client([
+            'base_uri' => self::BASE_URL
+        ]);
     }
 
     public function getUser(int $id): User
     {
-        $response = $this->client->get(self::BASE_URL."/users/{$id}");
+        $response = $this->client->get("/users/{$id}");
 
-        $json = json_decode($response->getBody()->getContents(), true)['data'];
+        $json = json_decode($response->getBody()->getContents(), true);
 
-        return User::fromArray($json);
+        return User::fromArray($json['data']);
     }
     
     public function createUser(string $name, string $job): UserCreated
@@ -34,7 +39,7 @@ class ReqresAdapter implements ReqresAdapterInterface
             throw new Exception("User's name and job must be provided when creating a user");
         }
 
-        $response = $this->client->post(self::BASE_URL.'/users', [
+        $response = $this->client->post('/users', [
             'json' => [
                 'name' => $name,
                 'job' => $job
@@ -48,7 +53,7 @@ class ReqresAdapter implements ReqresAdapterInterface
 
     public function getUsersPaginated(int $page): UsersPaginated
     {
-        $response = $this->client->get(self::BASE_URL."/users?page={$page}");
+        $response = $this->client->get("/users?page={$page}");
 
         $json = json_decode($response->getBody()->getContents(), true);
 

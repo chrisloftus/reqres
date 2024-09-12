@@ -18,6 +18,16 @@ use ChrisLoftus\Reqres\DataTransferObjects\UsersPaginated;
 
 final class ReqresAdapterTest extends TestCase
 {
+    private function createHttpClient($mock): Client
+    {
+        $handlerStack = HandlerStack::create($mock);
+
+        return new Client([
+            'handler' => $handlerStack,
+            'base_uri' => ReqresAdapter::BASE_URL,
+        ]);
+    }
+
     #[Test]
     public function get_user_by_id(): void
     {
@@ -37,9 +47,7 @@ final class ReqresAdapterTest extends TestCase
             }')
         ]);
 
-        $handlerStack = HandlerStack::create($mock);
-        $client = new Client(['handler' => $handlerStack]);
-
+        $client = $this->createHttpClient($mock);
         $adapter = new ReqresAdapter($client);
         $response = $adapter->getUser(2);
 
@@ -60,9 +68,7 @@ final class ReqresAdapterTest extends TestCase
             }')
         ]);
 
-        $handlerStack = HandlerStack::create($mock);
-        $client = new Client(['handler' => $handlerStack]);
-
+        $client = $this->createHttpClient($mock);
         $adapter = new ReqresAdapter($client);
         $response = $adapter->createUser('morpheus', 'leader');
 
@@ -74,8 +80,7 @@ final class ReqresAdapterTest extends TestCase
     public function cannot_create_a_user_without_a_name(): void
     {
         $mock = new MockHandler([]);
-        $handlerStack = HandlerStack::create($mock);
-        $client = new Client(['handler' => $handlerStack]);
+        $client = $this->createHttpClient($mock);
         $adapter = new ReqresAdapter($client);
 
         $this->expectException(Exception::class);
@@ -87,8 +92,7 @@ final class ReqresAdapterTest extends TestCase
     public function cannot_create_a_user_without_a_job(): void
     {
         $mock = new MockHandler([]);
-        $handlerStack = HandlerStack::create($mock);
-        $client = new Client(['handler' => $handlerStack]);
+        $client = $this->createHttpClient($mock);
         $adapter = new ReqresAdapter($client);
 
         $this->expectException(Exception::class);
@@ -156,9 +160,7 @@ final class ReqresAdapterTest extends TestCase
             }')
         ]);
 
-        $handlerStack = HandlerStack::create($mock);
-        $client = new Client(['handler' => $handlerStack]);
-
+        $client = $this->createHttpClient($mock);
         $adapter = new ReqresAdapter($client);
         $response = $adapter->getUsersPaginated(2);
 
