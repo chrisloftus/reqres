@@ -2,14 +2,14 @@
 
 declare (strict_types=1);
 
-namespace ChrisLoftus\Plentific;
+namespace ChrisLoftus\Reqres;
 
 use Exception;
 use GuzzleHttp\Client;
-use ChrisLoftus\Plentific\Logger;
-use ChrisLoftus\Plentific\DataTransferObjects\User;
-use ChrisLoftus\Plentific\DataTransferObjects\UserCreated;
-use ChrisLoftus\Plentific\DataTransferObjects\UsersPaginated;
+use ChrisLoftus\Reqres\Logger;
+use ChrisLoftus\Reqres\DataTransferObjects\User;
+use ChrisLoftus\Reqres\DataTransferObjects\UserCreated;
+use ChrisLoftus\Reqres\DataTransferObjects\UsersPaginated;
 
 class ReqresAdapter
 {

@@ -10,12 +10,12 @@
     },
     "autoload": {
         "psr-4": {
-            "ChrisLoftus\\Plentific\\": "src/ChrisLoftus/Plentific"
+            "ChrisLoftus\\Reqres\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "ChrisLoftus\\Reqres\\Tests\\": "tests/"
         }
     },
     "authors": [

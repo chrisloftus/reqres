@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
+namespace ChrisLoftus\Reqres\Tests;
+
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Handler\MockHandler;
 use PHPUnit\Framework\Attributes\Test;
-use ChrisLoftus\Plentific\ReqresAdapter;
-use ChrisLoftus\Plentific\DataTransferObjects\User;
-use ChrisLoftus\Plentific\DataTransferObjects\UserCreated;
-use ChrisLoftus\Plentific\DataTransferObjects\UsersPaginated;
+use ChrisLoftus\Reqres\ReqresAdapter;
+use ChrisLoftus\Reqres\DataTransferObjects\User;
+use ChrisLoftus\Reqres\DataTransferObjects\UserCreated;
+use ChrisLoftus\Reqres\DataTransferObjects\UsersPaginated;
 
 final class ReqresAdapterTest extends TestCase
 {

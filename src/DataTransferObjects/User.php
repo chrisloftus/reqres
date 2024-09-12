@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ChrisLoftus\Plentific\DataTransferObjects;
+namespace ChrisLoftus\Reqres\DataTransferObjects;
 
 use JsonSerializable;
 
