@@ -13,10 +13,10 @@ class ReqresAdapter implements ReqresAdapterInterface
 {
     public const BASE_URL = 'https://reqres.in/api/';
 
-    private $client;
+    private Client $client;
 
     public function __construct(
-        Client $client = null
+        $client = null
     ) {
         $this->client = $client ?: new Client([
             'base_uri' => self::BASE_URL

@@ -46,8 +46,8 @@ final class ReqresAdapterTest extends TestCase
         ]);
 
         $client = $this->createHttpClient($mock);
-        $adapter = new ReqresAdapter($client);
-        $user = $adapter->getUser(2);
+        $reqresAdapter = new ReqresAdapter($client);
+        $user = $reqresAdapter->getUser(2);
 
         $this->assertInstanceOf(User::class, $user);
         $this->assertEquals(2, $user->id);
@@ -67,8 +67,8 @@ final class ReqresAdapterTest extends TestCase
         ]);
 
         $client = $this->createHttpClient($mock);
-        $adapter = new ReqresAdapter($client);
-        $user = $adapter->createUser('morpheus', 'leader');
+        $reqresAdapter = new ReqresAdapter($client);
+        $user = $reqresAdapter->createUser('morpheus', 'leader');
 
         $this->assertInstanceOf(UserCreated::class, $user);
         $this->assertEquals(972, $user->id);
@@ -79,11 +79,11 @@ final class ReqresAdapterTest extends TestCase
     {
         $mock = new MockHandler([]);
         $client = $this->createHttpClient($mock);
-        $adapter = new ReqresAdapter($client);
+        $reqresAdapter = new ReqresAdapter($client);
 
         $this->expectException(Exception::class);
 
-        $adapter->createUser(name: '', job: 'leader');
+        $reqresAdapter->createUser(name: '', job: 'leader');
     }
 
     #[Test]
@@ -91,11 +91,11 @@ final class ReqresAdapterTest extends TestCase
     {
         $mock = new MockHandler([]);
         $client = $this->createHttpClient($mock);
-        $adapter = new ReqresAdapter($client);
+        $reqresAdapter = new ReqresAdapter($client);
 
         $this->expectException(Exception::class);
 
-        $adapter->createUser(name: 'morpheus', job: '');
+        $reqresAdapter->createUser(name: 'morpheus', job: '');
     }
 
     #[Test]
@@ -159,8 +159,8 @@ final class ReqresAdapterTest extends TestCase
         ]);
 
         $client = $this->createHttpClient($mock);
-        $adapter = new ReqresAdapter($client);
-        $response = $adapter->getUsersPaginated(2);
+        $reqresAdapter = new ReqresAdapter($client);
+        $response = $reqresAdapter->getUsersPaginated(2);
 
         $this->assertInstanceOf(UsersPaginated::class, $response);
         $this->assertEquals(2, $response->page);
