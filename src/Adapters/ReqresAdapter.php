@@ -32,7 +32,7 @@ class ReqresAdapter implements ReqresAdapterInterface
     
             return User::fromArray($json['data']);
         } catch (Exception $e) {
-            throw new CouldNotGetUser("Failed to get user from Reqres", 1, $e);
+            throw new CouldNotGetUser("Failed to get user {$id} from Reqres", 1, $e);
         }
     }
     
