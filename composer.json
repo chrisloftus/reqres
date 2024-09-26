@@ -23,8 +23,8 @@
     },
     "scripts": {
         "test": "/opt/homebrew/Cellar/php/8.3.3/bin/php ./vendor/bin/phpunit",
-        "cs": "/opt/homebrew/Cellar/php/8.3.3/bin/php  ./vendor/bin/phpcs",
-        "cs-fix": "/opt/homebrew/Cellar/php/8.3.3/bin/php  ./vendor/bin/phpcbf"
+        "cs": "/opt/homebrew/Cellar/php/8.3.3/bin/php ./vendor/bin/phpcs",
+        "cs-fix": "/opt/homebrew/Cellar/php/8.3.3/bin/php ./vendor/bin/phpcbf"
     },
     "authors": [
         {
