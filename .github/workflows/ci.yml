@@ -30,4 +30,4 @@ jobs:
         run: composer install --prefer-dist --no-suggest --no-progress
 
       - name: php-cs
-        run: ./vendor/bin/phpcs . --standard=phpcs.xml
+        run: ./vendor/bin/phpcs --version && ./vendor/bin/phpcs .
