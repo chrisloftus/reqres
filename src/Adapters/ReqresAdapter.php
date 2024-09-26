@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types=1);
+declare(strict_types=1);
 
 namespace ChrisLoftus\Reqres\Adapters;
 
@@ -27,15 +27,15 @@ class ReqresAdapter implements ReqresAdapterInterface
     {
         try {
             $response = $this->client->get("users/{$id}");
-    
+
             $json = json_decode($response->getBody()->getContents(), true);
-    
+
             return User::fromArray($json['data']);
         } catch (Exception $e) {
             throw new CouldNotGetUser("Failed to get user {$id} from Reqres", 1, $e);
         }
     }
-    
+
     public function createUser(string $name, string $job): UserCreated
     {
         if (empty(trim($name)) || empty(trim($job))) {
@@ -58,7 +58,7 @@ class ReqresAdapter implements ReqresAdapterInterface
     {
         try {
             $response = $this->client->get("users?page={$page}");
-    
+
             $json = json_decode($response->getBody()->getContents(), true);
         } catch (Exception $e) {
             throw new CouldNotGetUsersPaginated("Failed to get users (paginated) from Reqres", 1, $e);

@@ -7,6 +7,10 @@
         "php": "^8.2",
         "guzzlehttp/guzzle": "^7.9"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^11.3",
+        "squizlabs/php_codesniffer": "^3.0"
+    },
     "autoload": {
         "psr-4": {
             "ChrisLoftus\\Reqres\\": "src/"
@@ -17,14 +21,16 @@
             "ChrisLoftus\\Reqres\\Tests\\": "tests/"
         }
     },
+    "scripts": {
+        "test": "/opt/homebrew/Cellar/php/8.3.3/bin/php ./vendor/bin/phpunit",
+        "cs": "/opt/homebrew/Cellar/php/8.3.3/bin/php  ./vendor/bin/phpcs",
+        "cs-fix": "/opt/homebrew/Cellar/php/8.3.3/bin/php  ./vendor/bin/phpcbf"
+    },
     "authors": [
         {
             "name": "Chris Loftus",
             "email": "68920+chrisloftus@users.noreply.github.com"
         }
     ],
-    "minimum-stability": "stable",
-    "require-dev": {
-        "phpunit/phpunit": "^11.3"
-    }
+    "minimum-stability": "stable"
 }
