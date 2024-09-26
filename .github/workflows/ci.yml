@@ -9,10 +9,25 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: PHP Code Sniffer
-        uses: php-actions/phpcs@v1
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          php_version: 8.3
-          path: .
-          standard: phpcs.xml
-          report: full
+          php-version: '8.3'
+          tools: composer
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-suggest --no-progress
+
+      - name: php-cs
+        run: ./vendor/bin/phpcs . --standard=phpcs.xml
