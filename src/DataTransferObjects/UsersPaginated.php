@@ -6,7 +6,7 @@ namespace ChrisLoftus\Reqres\DataTransferObjects;
 
 use JsonSerializable;
 
-final readonly class UsersPaginated implements JsonSerializable
+readonly final class UsersPaginated implements JsonSerializable
 {
     public function __construct(
         public int $page,

@@ -6,7 +6,7 @@ namespace ChrisLoftus\Reqres\DataTransferObjects;
 
 use JsonSerializable;
 
-final readonly class User implements JsonSerializable
+readonly final class User implements JsonSerializable
 {
     public function __construct(
         public int $id,
